@@ -2,7 +2,6 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-// const js = require('./index')
 
 const app = express();
 
@@ -11,19 +10,20 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // in order to have css display
-app.use(express.static('../css'))
+app.use(express.static('../css'));
+app.use(express.static(__dirname + "/public"));
+
 
 // GET method route
-// works 
+// the -> * didn't work
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../../index.html/')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../../notes.html/')));
 
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../../notes.html')));
+// require("../../../routes/apiRoutes")(app);
+require("../../../routes/htmlRoutes")(app);
 
-// POST method - USER SENDS DATA TO US THAT THEY WANT TO SAVE
-// (THEIR NOTES)
-// app.post('/', function (req, res) {
-//   res.send('POST request to the homepage')
-// })
+// Create our server
+app.listen(PORT, () => console.log(`App listening on: http://localhost:${PORT}`))
 
 // MAYBE USE THIS FOR DELETING 
 // app.post('/api/clear', (req, res) => {
@@ -34,6 +34,3 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../../notes.h
 //     res.json({ ok: true });
 //   });
 // };
-
-// Create our server
-app.listen(PORT, () => console.log(`App listening on: http://localhost:${PORT}`))
