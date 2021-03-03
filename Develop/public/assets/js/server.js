@@ -1,4 +1,4 @@
-const http = require('http');
+// const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -14,15 +14,14 @@ app.use(express.static('../css'));
 app.use(express.static(__dirname + "/public"));
 
 
-// GET method route
+// GET - method route
 // the -> * didn't work
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../../index.html/')));
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../../notes.html/')));
 
-// require("../../../routes/apiRoutes")(app);
+require("../../../routes/apiRoutes")(app);
 require("../../../routes/htmlRoutes")(app);
 
-// Create our server
 app.listen(PORT, () => console.log(`App listening on: http://localhost:${PORT}`))
 
 // MAYBE USE THIS FOR DELETING 

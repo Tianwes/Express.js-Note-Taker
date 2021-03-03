@@ -6,7 +6,7 @@ module.exports = (app) => {
       res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
   
-    // (If no matching route is found)
+    // (If no matching route is found ^)
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../public/index.html'));
     });
