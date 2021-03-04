@@ -13,6 +13,7 @@ if (window.location.pathname === '/notes') {
 }
 
 // Show an element
+
 const show = (elem) => {
   elem.style.display = 'inline';
 };
@@ -33,7 +34,7 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
+const saveNote = (note) => 
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -95,6 +96,7 @@ const handleNoteDelete = (e) => {
 
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
+
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
@@ -102,11 +104,14 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
+
   activeNote = {};
   renderActiveNote();
 };
 
 const handleRenderSaveBtn = () => {
+ (124);
+
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hide(saveNoteBtn);
   } else {
@@ -116,6 +121,8 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+ (135);
+
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -125,6 +132,8 @@ const renderNoteList = async (notes) => {
 
   // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
+   (146);
+
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
 

@@ -9,18 +9,16 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// in order to have css display
-app.use(express.static('../css'));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static('public'));
 
 
 // GET - method route
 // the -> * didn't work
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../../index.html/')));
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../../notes.html/')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, './public/index.html/')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html/')));
 
-require("../../../routes/apiRoutes")(app);
-require("../../../routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 app.listen(PORT, () => console.log(`App listening on: http://localhost:${PORT}`))
 
