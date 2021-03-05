@@ -1,7 +1,7 @@
 {
   "name": "Express Note Taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A note taker run with Express",
   "main": "index.js",
   "scripts": {
     "start": "node server",
