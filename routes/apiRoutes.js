@@ -1,18 +1,18 @@
 const db = require('../db/db.json');
-const fs = require('fs');
-// for unique id's 
-// const uniqid = require('uniqid'); 
+const fs = require('fs'); 
+const Notes = require('../db/Notes');
 
 module.exports = (app) => {
-    app.get('/api/notes', (req, res) => res.json(db));
-
-
+    app.get('/api/notes', (req, res) => {
+        Notes.getNotes().then(notes => res.json(notes)) 
+    
+     });
     app.post('/api/notes', (req, res) => {
-        db.push(req.body);
+        Notes.writeNote(req.body).then(notes => res.json(notes));
 
-        fs.writeFile("../db/db.json", JSON.stringify(db), () => {
-            res.json(db);
-        });
     });
+
+    app.delete('/api/notes/:id', (req, res) => {
+        Notes.deleteNote(req.params.id).then(() => res.json({ok:true}))
+    })
 };
-//  later - app.delete()
