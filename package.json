@@ -1,6 +1,6 @@
 {
   "name": "Express Note Taker",
-  "version": "1.0.0",
+  "version": "14.15.4",
   "description": "A note taker run with Express",
   "main": "index.js",
   "scripts": {
